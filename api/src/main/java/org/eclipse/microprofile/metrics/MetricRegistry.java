@@ -236,70 +236,6 @@ public interface MetricRegistry {
     Counter counter(Metadata metadata, Tag... tags);
 
     /**
-     * Return the {@link ConcurrentGauge} registered under the {@link MetricID} with this name; or create and register
-     * a new {@link ConcurrentGauge} if none is registered.
-     * If a {@link ConcurrentGauge} was created, a {@link Metadata} object will be registered with the name and type.
-     *
-     * @param name the name of the metric
-     * @return a new or pre-existing {@link ConcurrentGauge}
-     */
-    ConcurrentGauge concurrentGauge(String name);
-
-    /**
-     * Return the {@link ConcurrentGauge} registered under the {@link MetricID} with this name and
-     * with the provided {@link Tag}s; or create and register a new {@link ConcurrentGauge} if none is registered.
-     * If a {@link ConcurrentGauge} was created, a {@link Metadata} object will be registered with the name and type.
-     *
-     * @param name the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link ConcurrentGauge}
-     */
-    ConcurrentGauge concurrentGauge(String name, Tag... tags);
-
-    /**
-     * Return the {@link ConcurrentGauge} registered under the {@link MetricID}; or create and register
-     * a new {@link ConcurrentGauge} if none is registered.
-     * If a {@link ConcurrentGauge} was created, a {@link Metadata} object will be registered with the name and type.
-     *
-     * @param metricID the ID of the metric
-     * @return a new or pre-existing {@link ConcurrentGauge}
-     *
-     * @since 3.0
-     */
-    ConcurrentGauge concurrentGauge(MetricID metricID);
-
-    /**
-     * Return the {@link ConcurrentGauge} registered under the {@link MetricID} with the {@link Metadata}'s name;
-     * or create and register a new {@link ConcurrentGauge} if none is registered.
-     * If a {@link ConcurrentGauge} was created, the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under
-     * this metric name and is not equal to the provided {@link Metadata} object then an exception
-     * will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @return a new or pre-existing {@link ConcurrentGauge}
-     */
-    ConcurrentGauge concurrentGauge(Metadata metadata);
-
-    /**
-     * Return the {@link ConcurrentGauge} registered under the {@link MetricID} with the {@link Metadata}'s name and
-     * with the provided {@link Tag}s; or create and register a new {@link ConcurrentGauge} if none is registered.
-     * If a {@link ConcurrentGauge} was created, the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under
-     * this metric name and is not equal to the provided {@link Metadata} object then an exception
-     * will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link ConcurrentGauge}
-     */
-    ConcurrentGauge concurrentGauge(Metadata metadata, Tag... tags);
-
-    /**
      * Return the {@link Gauge} of type {@link java.lang.Number Number} registered under the {@link MetricID} with this
      * name and with the provided {@link Tag}s; or create and register this gauge if none is registered.
      *
@@ -507,89 +443,14 @@ public interface MetricRegistry {
     Histogram histogram(Metadata metadata, Tag... tags);
 
     /**
-     * Return the {@link Meter} registered under the {@link MetricID} with this name and with no tags; or
-     * create and register a new {@link Meter} if none is registered.
+     * Return the {@link Timer} registered under the {@link MetricID} with this name and with no tags; or create and
+     * register a new {@link Timer} if none is registered.
      *
-     * If a {@link Meter} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
+     * If a {@link Timer} was created, a {@link Metadata} object will be registered with the name and type. If a
+     * {@link Metadata} object is already registered with this metric name then that {@link Metadata} will be used.
      *
-     * @param name the name of the metric
-     * @return a new or pre-existing {@link Meter}
-     */
-    Meter meter(String name);
-
-    /**
-     * Return the {@link Meter} registered under the {@link MetricID} with this name and with the provided {@link Tag}s;
-     * or create and register a new {@link Meter} if none is registered.
-     *
-     * If a {@link Meter} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     * @param name the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link Meter}
-     *
-     * @since 2.0
-     */
-    Meter meter(String name, Tag... tags);
-
-    /**
-     * Return the {@link Meter} registered under the {@link MetricID};
-     * or create and register a new {@link Meter} if none is registered.
-     *
-     * If a {@link Meter} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     * @param metricID the ID of the metric
-     * @return a new or pre-existing {@link Meter}
-     *
-     * @since 3.0
-     */
-    Meter meter(MetricID metricID);
-
-    /**
-     * Return the {@link Meter} registered under the {@link MetricID} with the {@link Metadata}'s name and with
-     * no tags; or create and register a new {@link Meter} if none is registered. If a {@link Meter} was created,
-     * the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under this metric
-     * name and is not equal to the provided {@link Metadata} object then an exception will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @return a new or pre-existing {@link Meter}
-     */
-    Meter meter(Metadata metadata);
-
-    /**
-     * Return the {@link Meter} registered under the {@link MetricID} with the {@link Metadata}'s name and with
-     * the provided {@link Tag}s; or create and register a new {@link Meter} if none is registered. If a {@link Meter} was
-     * created, the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under this metric name
-     * and is not equal to the provided {@link Metadata} object then an exception will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link Meter}
-     *
-     * @since 2.0
-     */
-    Meter meter(Metadata metadata, Tag... tags);
-
-    /**
-     * Return the {@link Timer} registered under the {@link MetricID} with this name and with no tags; or create
-     * and register a new {@link Timer} if none is registered.
-     *
-     * If a {@link Timer} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     * @param name the name of the metric
+     * @param name
+     *            the name of the metric
      * @return a new or pre-existing {@link Timer}
      */
     Timer timer(String name);
@@ -658,86 +519,6 @@ public interface MetricRegistry {
     Timer timer(Metadata metadata, Tag... tags);
 
     /**
-     * Return the {@link SimpleTimer} registered under the {@link MetricID} with this name and with no tags; or create
-     * and register a new {@link SimpleTimer} if none is registered.
-     *
-     * If a {@link SimpleTimer} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     * @param name the name of the metric
-     * @return a new or pre-existing {@link SimpleTimer}
-     *
-     * @since 2.3
-     */
-    SimpleTimer simpleTimer(String name);
-
-    /**
-     * Return the {@link SimpleTimer} registered under the {@link MetricID} with this name and with the provided {@link Tag}s;
-     * or create and register a new {@link SimpleTimer} if none is registered.
-     *
-     * If a {@link SimpleTimer} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     *
-     * @param name the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link SimpleTimer}
-     *
-     * @since 2.3
-     */
-    SimpleTimer simpleTimer(String name, Tag... tags);
-
-    /**
-     * Return the {@link SimpleTimer} registered under the {@link MetricID};
-     * or create and register a new {@link SimpleTimer} if none is registered.
-     *
-     * If a {@link SimpleTimer} was created, a {@link Metadata} object will be registered with the name
-     * and type. If a {@link Metadata} object is already registered with this metric name then that
-     * {@link Metadata} will be used.
-     *
-     * @param metricID the ID of the metric
-     * @return a new or pre-existing {@link SimpleTimer}
-     *
-     * @since 3.0
-     */
-    SimpleTimer simpleTimer(MetricID metricID);
-
-    /**
-     * Return the {@link SimpleTimer} registered under the the {@link MetricID} with the {@link Metadata}'s name and
-     * with no tags; or create and register a new {@link SimpleTimer} if none is registered. If a {@link SimpleTimer} was
-     * created, the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under this metric
-     * name and is not equal to the provided {@link Metadata} object then an exception will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @return a new or pre-existing {@link SimpleTimer}
-     *
-     * @since 2.3
-     */
-    SimpleTimer simpleTimer(Metadata metadata);
-
-    /**
-     * Return the {@link SimpleTimer} registered under the the {@link MetricID} with the {@link Metadata}'s name and
-     * with the provided {@link Tag}s; or create and register a new {@link SimpleTimer} if none is registered.
-     * If a {@link SimpleTimer} was created, the provided {@link Metadata} object will be registered.
-     * <p>
-     * Note: During retrieval or creation, if a {@link Metadata} object is already registered under this metric
-     * name and is not equal to the provided {@link Metadata} object then an exception will be thrown.
-     * </p>
-     *
-     * @param metadata the name of the metric
-     * @param tags the tags of the metric
-     * @return a new or pre-existing {@link SimpleTimer}
-     *
-     * @since 2.3
-     */
-    SimpleTimer simpleTimer(Metadata metadata, Tag... tags);
-
-    /**
      * Return the {@link Metric} registered for a provided {@link MetricID}.
      *
      * @param metricID lookup key, not {@code null}
@@ -774,17 +555,6 @@ public interface MetricRegistry {
     Counter getCounter(MetricID metricID);
 
     /**
-     * Return the {@link ConcurrentGauge} registered for the provided {@link MetricID}.
-     *
-     * @param metricID lookup key, not {@code null}
-     * @return the {@link ConcurrentGauge} registered for the key or {@code null} if none has been registered so far
-     * @throws IllegalArgumentException If the registered metric was not assignable to {@link ConcurrentGauge}
-     *
-     * @since 3.0
-     */
-    ConcurrentGauge getConcurrentGauge(MetricID metricID);
-
-    /**
      * Return the {@link  Gauge} registered for the provided {@link MetricID}.
      *
      * @param metricID lookup key, not {@code null}
@@ -807,17 +577,6 @@ public interface MetricRegistry {
     Histogram getHistogram(MetricID metricID);
 
     /**
-     * Return the {@link  Meter} registered for the provided {@link MetricID}.
-     *
-     * @param metricID lookup key, not {@code null}
-     * @return the {@link  Meter} registered for the key or {@code null} if none has been registered so far
-     * @throws IllegalArgumentException If the registered metric was not assignable to {@link  Meter}
-     *
-     * @since 3.0
-     */
-    Meter getMeter(MetricID metricID);
-
-    /**
      * Return the {@link  Timer} registered for the provided {@link MetricID}.
      *
      * @param metricID lookup key, not {@code null}
@@ -827,17 +586,6 @@ public interface MetricRegistry {
      * @since 3.0
      */
     Timer getTimer(MetricID metricID);
-
-    /**
-     * Return the {@link  SimpleTimer} registered for the provided {@link MetricID}.
-     *
-     * @param metricID lookup key, not {@code null}
-     * @return the {@link  SimpleTimer} registered for the key or {@code null} if none has been registered so far
-     * @throws IllegalArgumentException If the registered metric was not assignable to {@link  SimpleTimer}
-     *
-     * @since 3.0
-     */
-    SimpleTimer getSimpleTimer(MetricID metricID);
 
     /**
      * Return the {@link Metadata} for the provided name.
@@ -920,22 +668,6 @@ public interface MetricRegistry {
     SortedMap<MetricID, Counter> getCounters(MetricFilter filter);
 
     /**
-     * Returns a map of all the concurrent gauges in the registry and their {@link MetricID}s.
-     *
-     * @return all the concurrent gauges in the registry
-     */
-    SortedMap<MetricID, ConcurrentGauge> getConcurrentGauges();
-
-    /**
-     * Returns a map of all the concurrent gauges in the registry and their {@link MetricID}s which match
-     * the given filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the concurrent gauges in the registry
-     */
-    SortedMap<MetricID, ConcurrentGauge> getConcurrentGauges(MetricFilter filter);
-
-    /**
      * Returns a map of all the histograms in the registry and their {@link MetricID}s.
      *
      * @return all the histograms in the registry
@@ -952,21 +684,6 @@ public interface MetricRegistry {
     SortedMap<MetricID, Histogram> getHistograms(MetricFilter filter);
 
     /**
-     * Returns a map of all the meters in the registry and their {@link MetricID}s.
-     *
-     * @return all the meters in the registry
-     */
-    SortedMap<MetricID, Meter> getMeters();
-
-    /**
-     * Returns a map of all the meters in the registry and their {@link MetricID}s which match the given filter.
-     *
-     * @param filter the metric filter to match
-     * @return all the meters in the registry
-     */
-    SortedMap<MetricID, Meter> getMeters(MetricFilter filter);
-
-    /**
      * Returns a map of all the timers in the registry and their {@link MetricID}s.
      *
      * @return all the timers in the registry
@@ -980,21 +697,6 @@ public interface MetricRegistry {
      * @return all the timers in the registry
      */
     SortedMap<MetricID, Timer> getTimers(MetricFilter filter);
-
-    /**
-     * Returns a map of all the simple timers in the registry and their {@link MetricID}s.
-     *
-     * @return all the timers in the registry
-     */
-    SortedMap<MetricID, SimpleTimer> getSimpleTimers();
-
-    /**
-     * Returns a map of all the simple timers in the registry and their {@link MetricID}s which match the given filter.
-     *
-     * @param filter the metric filter to match
-     * @return all the timers in the registry
-     */
-    SortedMap<MetricID, SimpleTimer> getSimpleTimers(MetricFilter filter);
 
     /**
      * Returns a map of all the metrics in the registry and their {@link MetricID}s which match the given filter.

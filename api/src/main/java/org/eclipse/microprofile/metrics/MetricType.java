@@ -33,15 +33,7 @@ import java.util.EnumSet;
 public enum MetricType {
 
     /**
-     * A concurrent gauge counts the number of parallel invocations of
-     * a target (method). Upon entering the target the value is increased.
-     * It is decreased again upon exiting the target.
-     */
-
-    CONCURRENT_GAUGE("concurrent gauge", ConcurrentGauge.class),
-    /**
-     * A Counter monotonically increases its values.
-     * An example could be the number of Transactions committed.
+     * A Counter monotonically increases its values. An example could be the number of Transactions committed.
      */
     COUNTER("counter", Counter.class),
 
@@ -50,12 +42,6 @@ public enum MetricType {
      * sampling. An example could be CPU load
      */
     GAUGE("gauge", Gauge.class),
-
-    /**
-     * A Meter measures the rate at which a set of events occur.
-     * An example could be amount of Transactions per Hour.
-     */
-    METERED("meter", Meter.class),
 
     /**
      * A Histogram calculates the distribution of a value.
@@ -67,11 +53,6 @@ public enum MetricType {
      * statistics, plus throughput statistics
      */
     TIMER("timer", Timer.class),
-
-    /**
-     * A simple timer aggregates timing durations
-     */
-    SIMPLE_TIMER("simple timer", SimpleTimer.class),
 
     /**
      * Invalid - Placeholder

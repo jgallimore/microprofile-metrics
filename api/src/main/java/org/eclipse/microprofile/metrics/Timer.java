@@ -30,13 +30,13 @@ import java.time.Duration;
 /**
  * A timer metric which aggregates timing durations and provides duration statistics, plus
  * throughput statistics via {@link Meter}.
- * 
+ *
  * See {@link SimpleTimer} for a lightweight alternative that only tracks elapsed time
  * duration and count.
  *
  * The timer measures duration in nanoseconds.
  */
-public interface Timer extends Metered, Sampling {
+public interface Timer extends Sampling, Metric {
     /**
      * A timing context.
      *
@@ -92,25 +92,10 @@ public interface Timer extends Metered, Sampling {
 
     /**
      * Returns the total elapsed timing durations of all completed timing events that are recorded with {@link #update(Duration)}.
-     * 
+     *
      * @return the elapsed time {@link java.time.Duration duration}
      */
     Duration getElapsedTime();
-
-    @Override
-    long getCount();
-
-    @Override
-    double getFifteenMinuteRate();
-
-    @Override
-    double getFiveMinuteRate();
-
-    @Override
-    double getMeanRate();
-
-    @Override
-    double getOneMinuteRate();
 
     @Override
     Snapshot getSnapshot();
